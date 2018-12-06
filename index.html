@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="./styles/main.css">
+    <title>Task Maker</title>
+    <script type="text/javascript">
+        /***********************************************
+        * Drop Down Date select script- by JavaScriptKit.com
+        * This notice MUST stay intact for use
+        * Visit JavaScript Kit at http://www.javascriptkit.com/ for this script and more
+        ***********************************************/
+        var monthtext = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
+        function populatedropdown(dayfield, monthfield, yearfield) {
+            var today = new Date()
+            var dayfield = document.getElementById(dayfield)
+            var monthfield = document.getElementById(monthfield)
+            var yearfield = document.getElementById(yearfield)
+            for (var i = 0; i < 31; i++)
+                dayfield.options[i] = new Option(i, i + 1)
+            dayfield.options[today.getDate()] = new Option(today.getDate(), today.getDate(), true, true) //select today's day
+            for (var m = 0; m < 12; m++)
+                monthfield.options[m] = new Option(monthtext[m], monthtext[m])
+            monthfield.options[today.getMonth()] = new Option(monthtext[today.getMonth()], monthtext[today.getMonth()], true, true) //select today's month
+            var thisyear = today.getFullYear()
+            for (var y = 0; y < 20; y++) {
+                yearfield.options[y] = new Option(thisyear, thisyear)
+                thisyear += 1
+            }
+            yearfield.options[0] = new Option(today.getFullYear(), today.getFullYear(), true, true) //select today's year
+        }
+    </script>
+</head>
+
+<body>
+    <h1>To-Do List App</h1>
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModalCenter">
+        Create Your Task!
+    </button>
+
+    <!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Create Your Task!</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form id="todoForm">
+                To-Do: <input id="todoInput">
+                <br>
+                Description:
+                <input id="todoDescription"> 
+                <br>
+                Due Date:
+                <form action="" name="someform">
+                    <select id="daydropdown">
+                    </select>
+                    <select id="monthdropdown">
+                    </select>
+                    <select id="yeardropdown">
+                    </select>
+                </form>
+        </div>
+        <script type="text/javascript">
+            //populatedropdown(id_of_day_select, id_of_month_select, id_of_year_select)
+            window.onload = function () {
+                populatedropdown("daydropdown", "monthdropdown", "yeardropdown")
+            }
+        </script>
+    </form>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" id= "submit-button">Submit Task</button>
+        </div>
+      </div>
+    </div>
+  </div>
+    <ol id="todoList">
+    </ol>
+    <div class="wrapper">
+        <section id="toDo">
+            <!-- <div class="box a" draggable="true" id = "A"></div>
+            <div class="box b" draggable="true" id = "B"></div>
+            <div class="box c" draggable="true" id = "C"></div> -->
+        </section>
+        <section id="doing">
+            <!-- <div class="box d" draggable="true" id="D"></div>
+            <div class="box e" draggable="true" id="E"></div>
+            <div class="box f" draggable="true" id="F"></div> -->
+        </section>
+        <section id="done">
+            <!-- <div class="box g" draggable="true" id="G"></div>
+            <div class="box h" draggable="true" id="H"></div>
+            <div class="box i" draggable="true" id="I"></div> -->
+    </div>
+    </section>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+        crossorigin="anonymous"></script>
+    <script src="./bundle.js"></script>
+</body>
+
+</html>
